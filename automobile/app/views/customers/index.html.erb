@@ -1,0 +1,46 @@
+<h1>Customers</h1>
+
+<table style="width:100%">
+<style>
+ table{
+ background-color:LightBlue }
+ 
+ body {
+    background-image: url("http://www.planwallpaper.com/static/images/kartandtinki1_photo-wallpapers_02.jpg")
+}
+h1{color:gold}
+</style>
+  <thead>
+    <tr>
+	  <th>ID</th>
+      <th>Name</th>
+	  <th>vehicles</th>
+      <th>Email</th>
+      <th>Phone</th>
+	  <th>add_vehicle</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+	    <td><%= customer.id %></td>
+        <td><%= customer.name %></td>
+		<td><%customer.vehicles.each do |vehicle| %>
+		       <%= vehicle.make %> <%= vehicle.model %><br />
+			<% end %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.phone %></td>
+		<td><%= link_to 'add_vehicle', new_vehicle_path %></td>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer', new_customer_path %>
